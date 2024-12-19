@@ -9,7 +9,7 @@ const { createUser } = userControllers;
 
 router.post(
   "/auth/register",
-  ValidateRequest(userValidations.createUserValidationSchema),
+//   ValidateRequest(userValidations.createUserValidationSchema),
   createUser
 );
 
