@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Request, Response } from 'express';
 import { userRoutes } from './modules/user/User.routes';
+import errorHandler from './app/middlewears/ErrorHandler';
 
 const app = express();
 const port = 3000;
@@ -20,6 +21,7 @@ const getController = (req: Request, res: Response) => {
 };
 
 app.get('/', getController);
+app.use(errorHandler)
 
 
 export default app;
