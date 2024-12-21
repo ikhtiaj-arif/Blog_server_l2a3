@@ -1,10 +1,9 @@
-import config from '../../app/config';
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const createToken = (
   jwtPayload: { email: string; role: string },
   secret: string,
-  expiresIn: string,
+  expiresIn: string
 ) => {
   return jwt.sign(jwtPayload, secret, {
     expiresIn: expiresIn,

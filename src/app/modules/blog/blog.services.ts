@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import QueryBuilder from "../../app/builder/QureyBuilder";
-import AppError from "../../app/errors/AppError";
+import QueryBuilder from "../../builder/QureyBuilder";
+import AppError from "../../errors/AppError";
 import { IBlog } from "./blog.interface";
 import { Blog } from "./blog.model";
-import { User } from "../user/user.model";
 
 const createBlogIntoDB = async (
   payload: IBlog,

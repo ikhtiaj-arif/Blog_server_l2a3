@@ -1,5 +1,5 @@
-import catchAsync from "../../app/utils/CatchAsync";
-import sendResponse from "../../app/utils/SendResponse";
+import catchAsync from "../../utils/CatchAsync";
+import sendResponse from "../../utils/SendResponse";
 import { AuthServices } from "./auth.services";
 
 const { loginUserIntoDB } = AuthServices;

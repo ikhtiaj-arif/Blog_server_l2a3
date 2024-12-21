@@ -1,12 +1,16 @@
-import catchAsync from "../../app/utils/CatchAsync";
-import sendResponse from "../../app/utils/SendResponse";
+import catchAsync from "../../utils/CatchAsync";
+import sendResponse from "../../utils/SendResponse";
 import { blogServices } from "./blog.services";
 
-const { createBlogIntoDB,updateBlogIntoDB,deleteBlogFromDB, getAllBlogsFromDB } = blogServices;
+const {
+  createBlogIntoDB,
+  updateBlogIntoDB,
+  deleteBlogFromDB,
+  getAllBlogsFromDB,
+} = blogServices;
 
 const createBlog = catchAsync(async (req, res) => {
-const id = req?.user?._id
-
+  const id = req?.user?._id;
 
   const result = await createBlogIntoDB(req.body, id);
 
@@ -19,9 +23,8 @@ const id = req?.user?._id
 });
 
 const updateBlog = catchAsync(async (req, res) => {
-
-  const userID = req?.user?._id
-  const id = req.params.id
+  const userID = req?.user?._id;
+  const id = req.params.id;
 
   const result = await updateBlogIntoDB(req.body, userID, id);
 
@@ -34,9 +37,9 @@ const updateBlog = catchAsync(async (req, res) => {
 });
 
 const deleteBlog = catchAsync(async (req, res) => {
-  const userID = req?.user?._id
-  const id = req.params.id
-  const result = await deleteBlogFromDB( userID, id);
+  const userID = req?.user?._id;
+  const id = req.params.id;
+  const result = await deleteBlogFromDB(userID, id);
 
   sendResponse(res, {
     success: true,
@@ -44,21 +47,22 @@ const deleteBlog = catchAsync(async (req, res) => {
     message: "Blog deleted successfully!",
     data: {},
   });
-
-})
-
-const getAllBlogs = catchAsync(async(req, res)=>{
-const result = await getAllBlogsFromDB(req.query)
-
-sendResponse(res, {
-  success: true,
-  statusCode: 200,
-  message: "Blogs fetched successfully!",
-  data: result,
 });
-})
 
+const getAllBlogs = catchAsync(async (req, res) => {
+  const result = await getAllBlogsFromDB(req.query);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Blogs fetched successfully!",
+    data: result,
+  });
+});
 
 export const blogControllers = {
-  createBlog,updateBlog,deleteBlog,getAllBlogs
+  createBlog,
+  updateBlog,
+  deleteBlog,
+  getAllBlogs,
 };

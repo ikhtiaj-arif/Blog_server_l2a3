@@ -1,9 +1,9 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
 import errorHandler from "./app/middlewears/ErrorHandler";
-import { blogRoutes } from "./modules/blog/blog.routes";
-import { userRoutes } from "./modules/user/User.routes";
-import { AuthRoutes } from "./modules/Auth/auth.route";
+import { AuthRoutes } from "./app/modules/Auth/auth.route";
+import { blogRoutes } from "./app/modules/blog/blog.routes";
+import { userRoutes } from "./app/modules/user/user.routes";
 
 const app = express();
 const port = 3000;

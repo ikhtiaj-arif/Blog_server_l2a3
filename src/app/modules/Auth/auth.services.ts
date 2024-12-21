@@ -1,5 +1,5 @@
-import config from "../../app/config";
-import AppError from "../../app/errors/AppError";
+import config from "../../config";
+import AppError from "../../errors/AppError";
 import { User } from "../user/user.model";
 import { ILoginUser } from "./auth.interface";
 import { createToken } from "./auth.utils";

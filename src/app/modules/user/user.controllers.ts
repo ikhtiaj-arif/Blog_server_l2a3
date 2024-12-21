@@ -1,8 +1,8 @@
-import catchAsync from "../../app/utils/CatchAsync";
-import sendResponse from "../../app/utils/SendResponse";
+import catchAsync from "../../utils/CatchAsync";
+import sendResponse from "../../utils/SendResponse";
 import { userServices } from "./user.services";
 
-const { createUserIntoDB, blockUserIntoDB,deleteBlogFromDB } = userServices;
+const { createUserIntoDB, blockUserIntoDB, deleteBlogFromDB } = userServices;
 
 const createUser = catchAsync(async (req, res) => {
   const result = await createUserIntoDB(req.body);
@@ -18,7 +18,7 @@ const createUser = catchAsync(async (req, res) => {
 const blockUser = catchAsync(async (req, res) => {
   const blockId = req.params.userId;
 
- await blockUserIntoDB(blockId)
+  await blockUserIntoDB(blockId);
 
   sendResponse(res, {
     success: true,
@@ -28,10 +28,10 @@ const blockUser = catchAsync(async (req, res) => {
   });
 });
 
-const deleteBlog= catchAsync(async (req, res) => {
+const deleteBlog = catchAsync(async (req, res) => {
   const blogId = req.params.id;
 
- await deleteBlogFromDB(blogId)
+  await deleteBlogFromDB(blogId);
 
   sendResponse(res, {
     success: true,
@@ -44,6 +44,5 @@ const deleteBlog= catchAsync(async (req, res) => {
 export const userControllers = {
   createUser,
   blockUser,
-  deleteBlog
-  
+  deleteBlog,
 };

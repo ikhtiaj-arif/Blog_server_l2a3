@@ -1,7 +1,7 @@
 import express from "express";
-import auth from "../../app/middlewears/auth";
+import auth from "../../middlewears/auth";
+import ValidateRequest from "../../middlewears/ValidateRequest";
 import { blogControllers } from "./blog.controllers";
-import ValidateRequest from "../../app/middlewears/ValidateRequest";
 import { BlogValidations } from "./blog.validations";
 
 const router = express.Router();

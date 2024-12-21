@@ -1,7 +1,6 @@
 import { model, Schema } from "mongoose";
 
 import { BlogModel, IBlog } from "./blog.interface";
-import AppError from "../../app/errors/AppError";
 
 const blogSchema = new Schema<IBlog>(
   {
