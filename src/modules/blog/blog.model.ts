@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
-import { IBlog } from "./blog.interface";
-import { User } from "../user/user.model";
+import { BlogModel, IBlog } from "./blog.interface";
+import AppError from "../../app/errors/AppError";
 
 const blogSchema = new Schema<IBlog>(
   {
@@ -16,6 +16,7 @@ const blogSchema = new Schema<IBlog>(
     author: {
       type: Schema.Types.ObjectId,
       required: [true, "Author is required!"],
+      ref: "User",
     },
     isPublished: {
       type: Boolean,
@@ -27,9 +28,8 @@ const blogSchema = new Schema<IBlog>(
   }
 );
 
-blogSchema.pre('save', async function(id){
-    const userAvailable = await User.findById(id)
-    console.log(userAvailable);
-})
+blogSchema.statics.isBlogAvailable = async function (id: string) {
+  return await Blog.findById(id);
+};
 
-export const Blog = model<IBlog>("Blog", blogSchema);
+export const Blog = model<IBlog, BlogModel>("Blog", blogSchema);
