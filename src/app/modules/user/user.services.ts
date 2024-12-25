@@ -3,10 +3,7 @@ import { Blog } from "../blog/blog.model";
 import { IUser } from "./user.interface";
 import { User } from "./user.model";
 
-const createUserIntoDB = async (payload: IUser) => {
-  const result = await User.create(payload);
-  return result;
-};
+
 const blockUserIntoDB = async (blockId: string) => {
   const result = User.findByIdAndUpdate(blockId, { isBlocked: true });
   return result;
@@ -22,7 +19,7 @@ const deleteBlogFromDB = async (blogId: string) => {
 };
 
 export const userServices = {
-  createUserIntoDB,
+
   blockUserIntoDB,
   deleteBlogFromDB,
 };

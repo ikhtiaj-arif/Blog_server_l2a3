@@ -1,8 +1,16 @@
 import config from "../../config";
 import AppError from "../../errors/AppError";
+import { IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
 import { ILoginUser } from "./auth.interface";
 import { createToken } from "./auth.utils";
+
+
+const createUserIntoDB = async (payload: IUser) => {
+  const result = await User.create(payload);
+  return result;
+};
+
 
 const loginUserIntoDB = async (payload: ILoginUser) => {
   //check if the user exists
@@ -40,4 +48,4 @@ const loginUserIntoDB = async (payload: ILoginUser) => {
   };
 };
 
-export const AuthServices = { loginUserIntoDB };
+export const AuthServices = { createUserIntoDB,loginUserIntoDB };
