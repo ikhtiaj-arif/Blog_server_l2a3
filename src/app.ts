@@ -8,7 +8,7 @@ import { projectRoutes } from "./app/modules/project/project.routes";
 import { messageRoutes } from "./app/modules/messages/message.routes";
 
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 //parsers
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use("/api", projectRoutes);
 app.use("/api", messageRoutes);
 
 const getController = (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Server running");
 };
 
 app.get("/", getController);

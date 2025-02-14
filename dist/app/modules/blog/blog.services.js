@@ -13,53 +13,61 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.blogServices = void 0;
-const QureyBuilder_1 = __importDefault(require("../../builder/QureyBuilder"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const blog_model_1 = require("./blog.model");
-const createBlogIntoDB = (payload, id) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!id) {
+const createBlogIntoDB = (payload
+// id: mongoose.Types.ObjectId
+) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!payload.user) {
         throw new AppError_1.default(404, "user not found");
     }
-    payload.author = id;
-    const blog = (yield blog_model_1.Blog.create(payload)).populate("author");
+    // payload.author = id;
+    const blog = yield blog_model_1.Blog.create(payload);
     return blog;
 });
-const updateBlogIntoDB = (payload, userID, id) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    if (!userID) {
+const updateBlogIntoDB = (payload, 
+// userID: string,
+id) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!(payload === null || payload === void 0 ? void 0 : payload.user)) {
         throw new AppError_1.default(404, "user not found");
     }
     const blogToUpdate = yield blog_model_1.Blog.findById(id);
     if (!blogToUpdate) {
         throw new AppError_1.default(404, "Blog not found!");
     }
-    if (userID.toString() !== ((_a = blogToUpdate === null || blogToUpdate === void 0 ? void 0 : blogToUpdate.author) === null || _a === void 0 ? void 0 : _a.toString())) {
+    // if (userID.toString() !== blogToUpdate?.author?.toString()) {
+    //   throw new AppError(403, "Unauthorized user!");
+    // }
+    if ((payload === null || payload === void 0 ? void 0 : payload.user) !== (blogToUpdate === null || blogToUpdate === void 0 ? void 0 : blogToUpdate.user)) {
         throw new AppError_1.default(403, "Unauthorized user!");
     }
-    const result = blog_model_1.Blog.findByIdAndUpdate(id, payload).populate("author");
+    const result = blog_model_1.Blog.findByIdAndUpdate(id, payload);
     return result;
 });
-const deleteBlogFromDB = (userID, id) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    if (!userID) {
-        throw new AppError_1.default(404, "user not found");
-    }
+const deleteBlogFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    // if (user) {
+    //   throw new AppError(404, "user not found");
+    // }
     const blogToUpdate = yield blog_model_1.Blog.findById(id);
     if (!blogToUpdate) {
         throw new AppError_1.default(404, "Blog not found!");
     }
-    if (userID.toString() !== ((_a = blogToUpdate === null || blogToUpdate === void 0 ? void 0 : blogToUpdate.author) === null || _a === void 0 ? void 0 : _a.toString())) {
-        throw new AppError_1.default(403, "Unauthorized user!");
-    }
+    // if (user !== blogToUpdate?.user) {
+    //   throw new AppError(403, "Unauthorized user!");
+    // }
     const result = blog_model_1.Blog.findByIdAndDelete(id);
     return result;
 });
+const getBlogFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = blog_model_1.Blog.findById(id);
+    return result;
+});
 const getAllBlogsFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const blogQuery = new QureyBuilder_1.default(blog_model_1.Blog.find().populate("author"), query)
-        .search(["title", "content"])
-        .sort()
-        .filter();
-    const result = yield blogQuery.modelQuery;
+    // const blogQuery = new QueryBuilder(Blog.find().populate("author"), query)
+    //   .search(["title", "content"])
+    //   .sort()
+    //   .filter();
+    const result = yield blog_model_1.Blog.find();
     return result;
 });
 exports.blogServices = {
@@ -67,4 +75,5 @@ exports.blogServices = {
     getAllBlogsFromDB,
     updateBlogIntoDB,
     deleteBlogFromDB,
+    getBlogFromDB,
 };

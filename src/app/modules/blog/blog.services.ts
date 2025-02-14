@@ -60,6 +60,10 @@ const deleteBlogFromDB = async (id: string) => {
   const result = Blog.findByIdAndDelete(id);
   return result;
 };
+const getBlogFromDB = async (id: string) => {
+  const result = Blog.findById(id);
+  return result;
+};
 
 const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   // const blogQuery = new QueryBuilder(Blog.find().populate("author"), query)
@@ -76,4 +80,5 @@ export const blogServices = {
   getAllBlogsFromDB,
   updateBlogIntoDB,
   deleteBlogFromDB,
+  getBlogFromDB,
 };

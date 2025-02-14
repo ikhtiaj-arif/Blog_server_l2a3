@@ -2,7 +2,7 @@ import catchAsync from "../../utils/CatchAsync";
 import sendResponse from "../../utils/SendResponse";
 import { projectServices } from "./project.service";
 
-const { createProjectIntoDB, getAllProjectsFromDB,updateProjectsIntoDB,deleteProjectFromDB  } = projectServices;
+const { createProjectIntoDB, getAllProjectsFromDB,updateProjectsIntoDB,deleteProjectFromDB,getOneProjectFromDB  } = projectServices;
 
 const createProject = catchAsync(async (req, res) => {
 //   const id = req?.user?._id;
@@ -42,6 +42,18 @@ const updateProject = catchAsync(async (req, res) => {
     });
   });
   
+  const getOneProject = catchAsync(async (req, res) => {
+
+    const id = req.params.id;
+    const result = await getOneProjectFromDB( id);
+  
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message: "Project deleted successfully!",
+      data:result,
+    });
+  });
   const deleteProject = catchAsync(async (req, res) => {
 
     const id = req.params.id;
@@ -57,5 +69,5 @@ const updateProject = catchAsync(async (req, res) => {
   
 
 export const projectControllers = {
-  createProject,getProjects,updateProject,deleteProject
+  createProject,getProjects,updateProject,deleteProject,getOneProject
 };

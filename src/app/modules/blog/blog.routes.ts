@@ -2,7 +2,7 @@ import express from "express";
 import { blogControllers } from "./blog.controllers";
 
 const router = express.Router();
-const { createBlog, updateBlog, deleteBlog, getAllBlogs } = blogControllers;
+const { createBlog, updateBlog,getOneBlog, deleteBlog, getAllBlogs } = blogControllers;
 
 router.get("/blogs", getAllBlogs);
 
@@ -12,6 +12,8 @@ router.post(
   // ValidateRequest(BlogValidations.createBlogSchema),
   createBlog
 );
+router.get("/blogs/:id", getOneBlog);
+
 router.patch(
   "/blogs/:id",
   // auth("admin", "user"),

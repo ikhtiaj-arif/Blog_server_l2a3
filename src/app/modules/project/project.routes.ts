@@ -2,7 +2,7 @@ import express from "express";
 import { projectControllers } from "./project.controller";
 
 const router = express.Router();
-const { createProject, getProjects, updateProject, deleteProject } =
+const { createProject, getProjects, updateProject, deleteProject, getOneProject } =
   projectControllers;
 
 router.get("/projects", getProjects);
@@ -12,6 +12,12 @@ router.post(
   //   auth("admin", "user"),
   //   ValidateRequest(BlogValidations.createBlogSchema),
   createProject
+);
+router.get(
+  "/project/:id",
+  //   auth("admin", "user"),
+  //   ValidateRequest(BlogValidations.createBlogSchema),
+  getOneProject
 );
 router.patch(
   "/project/:id",

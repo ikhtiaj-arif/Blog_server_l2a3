@@ -12,69 +12,60 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.blogControllers = void 0;
+exports.projectControllers = void 0;
 const CatchAsync_1 = __importDefault(require("../../utils/CatchAsync"));
 const SendResponse_1 = __importDefault(require("../../utils/SendResponse"));
-const blog_services_1 = require("./blog.services");
-const { createBlogIntoDB, updateBlogIntoDB, deleteBlogFromDB, getAllBlogsFromDB, getBlogFromDB } = blog_services_1.blogServices;
-const createBlog = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const id = req?.user?._id;
-    const result = yield createBlogIntoDB(req.body);
+const project_service_1 = require("./project.service");
+const { createProjectIntoDB, getAllProjectsFromDB, updateProjectsIntoDB, deleteProjectFromDB, getOneProjectFromDB } = project_service_1.projectServices;
+const createProject = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //   const id = req?.user?._id;
+    const result = yield createProjectIntoDB(req.body);
     (0, SendResponse_1.default)(res, {
         success: true,
         statusCode: 201,
-        message: "Blog is created successfully!",
+        message: "Project is created successfully!",
         data: result,
     });
 }));
-const updateBlog = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const userID = req?.user?._id;
+const getProjects = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield getAllProjectsFromDB();
+    (0, SendResponse_1.default)(res, {
+        success: true,
+        statusCode: 200,
+        message: "Projects fetched successfully!",
+        data: result,
+    });
+}));
+const updateProject = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    const result = yield updateBlogIntoDB(req.body, id);
+    const result = yield updateProjectsIntoDB(req.body, id);
     (0, SendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
-        message: "Blog updated successfully!",
+        message: "Project updated successfully!",
         data: result,
     });
 }));
-const deleteBlog = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const userID = req?.user?._id;
+const getOneProject = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    // const user = req.body;
-    const result = yield deleteBlogFromDB(id);
+    const result = yield getOneProjectFromDB(id);
     (0, SendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
-        message: "Blog deleted successfully!",
-        // data: {},
+        message: "Project deleted successfully!",
+        data: result,
     });
 }));
-const getOneBlog = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const userID = req?.user?._id;
+const deleteProject = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    // const user = req.body;
-    const result = yield getBlogFromDB(id);
+    const result = yield deleteProjectFromDB(id);
     (0, SendResponse_1.default)(res, {
         success: true,
         statusCode: 200,
-        message: "Blog Fetched successfully!",
-        data: result,
+        message: "Project deleted successfully!",
+        data: {},
     });
 }));
-const getAllBlogs = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield getAllBlogsFromDB(req.query);
-    (0, SendResponse_1.default)(res, {
-        success: true,
-        statusCode: 200,
-        message: "Blogs fetched successfully!",
-        data: result,
-    });
-}));
-exports.blogControllers = {
-    createBlog,
-    updateBlog,
-    deleteBlog,
-    getAllBlogs,
-    getOneBlog,
+exports.projectControllers = {
+    createProject, getProjects, updateProject, deleteProject, getOneProject
 };

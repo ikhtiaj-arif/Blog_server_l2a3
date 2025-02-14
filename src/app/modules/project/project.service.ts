@@ -42,6 +42,17 @@ const updateProjectsIntoDB = async (
   }
 };
 
+const getOneProjectFromDB = async ( id: string) => {
+
+
+  const projectToUpdate = await Project.findById(id);
+  if (!projectToUpdate) {
+    throw new AppError(404, "Project not found!");
+  }
+
+  const result = projectToUpdate
+  return result;
+};
 const deleteProjectFromDB = async ( id: string) => {
 
 
@@ -54,4 +65,4 @@ const deleteProjectFromDB = async ( id: string) => {
   return result;
 };
 
-export const projectServices = { createProjectIntoDB, getAllProjectsFromDB,updateProjectsIntoDB,deleteProjectFromDB };
+export const projectServices = { createProjectIntoDB, getAllProjectsFromDB,updateProjectsIntoDB,deleteProjectFromDB,getOneProjectFromDB };
