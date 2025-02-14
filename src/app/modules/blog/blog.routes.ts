@@ -11,8 +11,8 @@ router.get("/blogs", getAllBlogs);
 
 router.post(
   "/blogs",
-  auth("admin", "user"),
-  ValidateRequest(BlogValidations.createBlogSchema),
+  // auth("admin", "user"),
+  // ValidateRequest(BlogValidations.createBlogSchema),
   createBlog
 );
 router.patch(

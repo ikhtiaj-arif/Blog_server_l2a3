@@ -12,11 +12,19 @@ const blogSchema = new Schema<IBlog>(
       type: String,
       required: [true, "Content is required!"],
     },
-    author: {
-      type: Schema.Types.ObjectId,
-      required: [true, "Author is required!"],
-      ref: "User",
+    user: {
+      type: String,
+      required: [true, "user is required!"],
     },
+    image: {
+      type: String,
+      required: [true, "Image url is required!"],
+    },
+    // author: {
+    //   type: Schema.Types.ObjectId,
+    //   required: [true, "Author is required!"],
+    //   ref: "User",
+    // },
     isPublished: {
       type: Boolean,
       default: true,

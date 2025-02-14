@@ -4,6 +4,7 @@ import errorHandler from "./app/middlewears/ErrorHandler";
 import { AuthRoutes } from "./app/modules/Auth/auth.route";
 import { blogRoutes } from "./app/modules/blog/blog.routes";
 import { userRoutes } from "./app/modules/user/user.routes";
+import { projectRoutes } from "./app/modules/project/project.routes";
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", AuthRoutes);
+app.use("/api", projectRoutes);
 
 const getController = (req: Request, res: Response) => {
   res.send("Hello World!");
