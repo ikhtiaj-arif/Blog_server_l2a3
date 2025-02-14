@@ -10,9 +10,9 @@ const {
 } = blogServices;
 
 const createBlog = catchAsync(async (req, res) => {
-  const id = req?.user?._id;
+  // const id = req?.user?._id;
 
-  const result = await createBlogIntoDB(req.body, id);
+  const result = await createBlogIntoDB(req.body);
 
   sendResponse(res, {
     success: true,
@@ -23,10 +23,10 @@ const createBlog = catchAsync(async (req, res) => {
 });
 
 const updateBlog = catchAsync(async (req, res) => {
-  const userID = req?.user?._id;
+  // const userID = req?.user?._id;
   const id = req.params.id;
 
-  const result = await updateBlogIntoDB(req.body, userID, id);
+  const result = await updateBlogIntoDB(req.body, id);
 
   sendResponse(res, {
     success: true,
@@ -37,9 +37,11 @@ const updateBlog = catchAsync(async (req, res) => {
 });
 
 const deleteBlog = catchAsync(async (req, res) => {
-  const userID = req?.user?._id;
+  // const userID = req?.user?._id;
   const id = req.params.id;
-  const result = await deleteBlogFromDB(userID, id);
+  // const user = req.body;
+
+  const result = await deleteBlogFromDB( id);
 
   sendResponse(res, {
     success: true,

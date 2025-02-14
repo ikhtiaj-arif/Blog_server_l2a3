@@ -1,8 +1,5 @@
 import express from "express";
-import auth from "../../middlewears/auth";
-import ValidateRequest from "../../middlewears/ValidateRequest";
 import { blogControllers } from "./blog.controllers";
-import { BlogValidations } from "./blog.validations";
 
 const router = express.Router();
 const { createBlog, updateBlog, deleteBlog, getAllBlogs } = blogControllers;
@@ -17,13 +14,13 @@ router.post(
 );
 router.patch(
   "/blogs/:id",
-  auth("admin", "user"),
+  // auth("admin", "user"),
   //   ValidateRequest(BlogValidations.createBlogSchema),
   updateBlog
 );
 router.delete(
   "/blogs/:id",
-  auth("admin", "user"),
+  // auth("admin", "user"),
   //   ValidateRequest(BlogValidations.createBlogSchema),
   deleteBlog
 );
