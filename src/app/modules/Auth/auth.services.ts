@@ -13,6 +13,7 @@ const createUserIntoDB = async (payload: IUser) => {
 
 
 const loginUserIntoDB = async (payload: ILoginUser) => {
+  console.log(payload);
   //check if the user exists
   const existingUserData = await User.doesUserExistsByEmail(payload.email);
   if (!existingUserData) {

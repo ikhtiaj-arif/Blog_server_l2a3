@@ -22,6 +22,7 @@ const createUserIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function
     return result;
 });
 const loginUserIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(payload);
     //check if the user exists
     const existingUserData = yield user_model_1.User.doesUserExistsByEmail(payload.email);
     if (!existingUserData) {

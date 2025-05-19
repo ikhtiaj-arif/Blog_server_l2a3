@@ -23,10 +23,18 @@ const projectSchema = new mongoose_1.Schema({
         type: String,
         required: [true, "live link is required!"],
     },
-    user: {
+    source_code_link_client: {
         type: String,
-        required: [true, "user is required!"],
+        required: [true, "Client Repository is required!"],
     },
+    source_code_link_server: {
+        type: String,
+        required: [true, "Server Repository is required!"],
+    },
+    // user: {
+    //   type: String,
+    //   required: [true, "user is required!"],
+    // },
 }, {
     timestamps: true,
 });

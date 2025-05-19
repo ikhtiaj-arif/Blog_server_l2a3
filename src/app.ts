@@ -6,6 +6,8 @@ import { blogRoutes } from "./app/modules/blog/blog.routes";
 import { userRoutes } from "./app/modules/user/user.routes";
 import { projectRoutes } from "./app/modules/project/project.routes";
 import { messageRoutes } from "./app/modules/messages/message.routes";
+import { experienceRoutes } from "./app/modules/experience/experience.routes";
+import { TechRoutes } from "./app/modules/Tech/tech.routes";
 
 const app = express();
 // const port = 3000;
@@ -20,6 +22,8 @@ app.use("/api", blogRoutes);
 app.use("/api", AuthRoutes);
 app.use("/api", projectRoutes);
 app.use("/api", messageRoutes);
+app.use("/api", experienceRoutes); 
+app.use("/api", TechRoutes); 
 
 const getController = (req: Request, res: Response) => {
   res.send("Server running");

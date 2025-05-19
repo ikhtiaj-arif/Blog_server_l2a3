@@ -11,6 +11,8 @@ const blog_routes_1 = require("./app/modules/blog/blog.routes");
 const user_routes_1 = require("./app/modules/user/user.routes");
 const project_routes_1 = require("./app/modules/project/project.routes");
 const message_routes_1 = require("./app/modules/messages/message.routes");
+const experience_routes_1 = require("./app/modules/experience/experience.routes");
+const tech_routes_1 = require("./app/modules/Tech/tech.routes");
 const app = (0, express_1.default)();
 // const port = 3000;
 //parsers
@@ -22,6 +24,8 @@ app.use("/api", blog_routes_1.blogRoutes);
 app.use("/api", auth_route_1.AuthRoutes);
 app.use("/api", project_routes_1.projectRoutes);
 app.use("/api", message_routes_1.messageRoutes);
+app.use("/api", experience_routes_1.experienceRoutes);
+app.use("/api", tech_routes_1.TechRoutes);
 const getController = (req, res) => {
     res.send("Server running");
 };
